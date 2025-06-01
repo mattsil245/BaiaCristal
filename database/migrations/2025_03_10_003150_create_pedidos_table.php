@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
             $table->decimal('total', 10,2);
-            $table->foreignId('id_user')->references('id')->on('user');
+            $table->foreignId('id_user')->references('id')->on('users');
             $table->string('status');
             $table->timestamps();
         });

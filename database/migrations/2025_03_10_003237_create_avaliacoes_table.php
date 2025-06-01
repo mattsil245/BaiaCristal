@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('avaliacoes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_pedido')->references('id')->on('pedidos');
-            $table->foreignId('id_user')->references('id')->on('user');
+            $table->foreignId('id_user')->references('id')->on('users');
             $table->string('comentario', 512);
             $table->integer('nota');
             $table->timestamps();

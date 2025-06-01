@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('comentario_produto', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_produto')->references('id')->on('produtos');
-            $table->foreignId('id_user')->references('id')->on('user');
+            $table->foreignId('id_user')->references('id')->on('users');
             $table->foreignId('id_comentario')->references('id')->on('comentarios');
             $table->timestamps();
         });
