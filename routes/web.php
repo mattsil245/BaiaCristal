@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\User\UsuarioPerfilController;
 
 use App\Http\Controllers\Admin\Admin_User_Controller;
 use App\Http\Controllers\Admin\AdminController;
@@ -77,6 +78,6 @@ Route::prefix('')->group(function () {
 
     Route::post('/login', [UsuarioAuthController::class, 'login'])->name('usuario.login');
     Route::get('/logout', [UsuarioAuthController::class, 'logout'])->name('usuario.logout');
-
+    Route::get('/perfil', [UsuarioPerfilController::class, 'index'])->name('usuario.perfil');
 });
 

@@ -78,7 +78,9 @@
           </button>
           <div id="myDropdown" class="dropdown-content">
             @if(session('usuario_logado'))
-              <span class="dropdown-item-text px-3">{{ session('usuario_nome') }}</span>
+            <a href="{{ route('usuario.perfil') }}" class="dropdown-item px-3">
+              {{ session('usuario_nome') }}
+            </a>
               <a href="{{ route('usuario.logout') }}">Sair</a>
             @else
               <a data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
