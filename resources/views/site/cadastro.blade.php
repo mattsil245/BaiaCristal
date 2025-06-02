@@ -82,35 +82,53 @@
         <h1>Cadastre-se</h1>
     </div>
     <div class="cardCadastro">
-            <div class="formulario">
-                    <div class="linha">
-                        <div class="alinha">
-                            <label>Nome:</label> 
-                            <input class="input" name="nome" type="text" id="input_Nome" placeholder="Seu Nome"required/>
-                        </div>
-                    </div>
-                    <div class="linha">
-                        <div class="alinha">
-                            <label>Email:</label> 
-                            <input class="input" name="email" type="email" id="input_Email" placeholder="Seu E-mail" required/>
-                        </div>
-                    </div>
-                     <div class="linha">
-                        <div class="alinha">
-                            <label>Senha:</label>
-                            <input class="input" name="senha" type="password" id="input_Senha" placeholder="Sua Senha" required/>
-                        </div>
-                    </div>
-                    <div class="linha">
-                   <div class="btnProduto" id="btnCadastrar">
-            Cadastrar
-        </div>
-        <div class="btnProduto" id="btnCancelar">
-            Cancelar
+           <form class="formulario" method="POST" action="{{ route('usuario.cadastrar') }}">
+    @csrf
+    <div class="linha">
+        <div class="alinha">
+            <label>Nome:</label> 
+            <input class="input" name="nome" type="text" placeholder="Seu Nome" required/>
         </div>
     </div>
+    <div class="linha">
+        <div class="alinha">
+            <label>Email:</label> 
+            <input class="input" name="email" type="email" placeholder="Seu E-mail" required/>
+        </div>
+    </div>
+    <div class="linha">
+        <div class="alinha">
+            <label>Telefone:</label> 
+            <input class="input" name="tel" type="text" placeholder="(xx) xxxxx-xxxx" required/>
+        </div>
+    </div>
+    <div class="linha">
+        <div class="alinha">
+            <label>Data de Nascimento:</label> 
+            <input class="input" name="data_nasc" type="date" required/>
+        </div>
+    </div>
+    <div class="linha">
+        <div class="alinha">
+            <label>Senha:</label>
+            <input class="input" name="password" type="password" placeholder="Sua Senha" required/>
+        </div>
+    </div>
+    <div class="linha">
+        <button type="submit" class="btnProduto" id="btnCadastrar">Cadastrar</button>
+        <a href="{{ url('/') }}" class="btnProduto" id="btnCancelar">Cancelar</a>
+    </div>
+</form>
   </div>
 </div>
-  
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+  <script>
+    $(document).ready(function(){
+        $('input[name="tel"]').mask('(00) 00000-0000');
+    });
+</script>
+
 
 @endsection

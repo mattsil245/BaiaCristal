@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ProdutoController;
 use App\Http\Controllers\User\ContatoController;
 use App\Http\Controllers\User\User_ProdutoController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\User\UsuarioAuthController;
 use App\Models\Categoria;
 use App\Models\Contato;
 use App\Http\Controllers\admin\Admin_Contato_Controller;
@@ -68,6 +69,14 @@ Route::prefix('')->group(function () {
     Route::post('/criar-contato', [ContatoController::class, 'store'])->name('contato.store');
 
     Route::get('/cadastro', [UserController::class, 'create'])->name('usuario.create');
-    Route::post('/cadastro', [UserController::class, 'store'])->name('usuario.store');
+    Route::post('/cadastro', [UserController::class, 'store'])->name('usuario.cadastrar');
+
+    Route::get('/login', function () {
+        return view('site.login');
+    })->name('login');
+
+    Route::post('/login', [UsuarioAuthController::class, 'login'])->name('usuario.login');
+    Route::get('/logout', [UsuarioAuthController::class, 'logout'])->name('usuario.logout');
+
 });
 

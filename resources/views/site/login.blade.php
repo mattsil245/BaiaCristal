@@ -7,7 +7,7 @@
   Login
 </button> -->
 
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -29,5 +29,24 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
+@if(session('error'))
+  <div class="alert alert-danger">{{ session('error') }}</div>
+@endif
 
+@if(session('success'))
+  <div class="alert alert-success">{{ session('success') }}</div>
+@endif
+
+<form method="POST" action="{{ route('usuario.login') }}">
+    @csrf
+    <label>Email:</label>
+    <input type="email" name="email" required>
+
+    <label>Senha:</label>
+    <input type="password" name="password" required>
+
+    <button type="submit">Entrar</button>
+</form>
+
+@endsection

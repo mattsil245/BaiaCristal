@@ -45,16 +45,15 @@ class UserController extends Controller
         //
         $user = new User();
 
-        //$contato->nome = $request->nome;
         $user->name = $request->nome;
         $user->email = $request->email;
-        $user->password = Hash::make($request->senha);
+        $user->password = Hash::make($request->password);
         $user->tel = $request->tel;
-        $user->data_nasc = $request->birth;
+        $user->data_nasc = $request->data_nasc;
 
         $user->save();
 
-        return view('site.index');
+        return redirect('/')->with('sucesso', 'Cadastro realizado com sucesso!');
     }
 
     /**
