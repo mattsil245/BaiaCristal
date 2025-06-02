@@ -44,7 +44,7 @@
   }
 </style>
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #13BAB2 !important">
+<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color:rgb(76, 184, 112) !important">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">Baía Cristal</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -56,13 +56,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item"><a class="nav-link" href="/produtos">Produtos</a></li>
-        <li class="nav-item dropdown">
+      <!--   <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">Categorias</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#">Action</a></li>
           </ul>
-        </li>
+        </li> -->
         <li class="nav-item"><a class="nav-link" href="/contato">Contato</a></li>
       </ul>
 
@@ -108,6 +108,20 @@
     }
   });
 </script>
+
+<style>
+.btn{
+  background-color: #45a049;
+  color: #FFF;
+  font-weight: bold;
+  width: 100%;
+}
+.btn:hover{
+  color: #45a049;
+  border: #45a049 solid 2px;
+}
+
+</style>
 
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
   <div class="modal-dialog">

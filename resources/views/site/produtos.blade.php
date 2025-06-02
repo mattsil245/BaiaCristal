@@ -39,9 +39,10 @@
 
     .cardProdutos {
         background-color: #BBFFD9;
-        width: 100%;
-        max-width: 300px;
+        width: 20rem;
+        max-width: 17rem;
         border-radius: 1rem;
+        margin-bottom: 1rem;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -55,8 +56,8 @@
         transform: translateY(-5px);
     }
     .cardImagem img {
-        max-width: 100%;
-        height: auto;
+        max-width: 15rem;
+        min-height: 11rem;
         border-radius: 1rem;
     }
     .nomeProduto {
