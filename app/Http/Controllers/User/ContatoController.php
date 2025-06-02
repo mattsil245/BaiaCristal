@@ -43,19 +43,27 @@ class ContatoController extends Controller
      */
     public function store(Request $request)
     {
-
+        // validação simples
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'assunto' => 'required|string|max:255',
+            'msg' => 'required|string',
+        ]);
+    
         $contato = new Contato();
-
+    
         $contato->nome = $request->nome;
         $contato->email = $request->email;
         $contato->assunto = $request->assunto;
         $contato->mensagem = $request->msg;
-
+    
         $contato->save();
-
-        return view('user.contato');
-        
+    
+        // redireciona para a página de contato com mensagem de sucesso
+        return redirect()->route('contato.create')->with('success', 'Mensagem enviada com sucesso!');
     }
+    
 
     /**
      * Display the specified resource.

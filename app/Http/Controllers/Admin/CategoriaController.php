@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Categoria;
+use Illuminate\Database\QueryException;
 
 use Illuminate\Http\Request;
 
@@ -90,8 +91,17 @@ class CategoriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($id)
     {
-        //
+        try {
+            $categoria = Categoria::findOrFail($id);
+            $categoria->delete();
+    
+            return redirect()->route('admin.categoria.index')->with('success', 'Categoria excluída com sucesso!');
+        } catch (QueryException $e) {
+            return redirect()->route('admin.categoria.index')->with('error', 'Não foi possível excluir. A categoria está vinculada a produtos cadastrados.');
+        }
     }
+    
 }

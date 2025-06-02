@@ -4,7 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Produto; 
 
 class User_ProdutoController extends Controller
 {
@@ -15,8 +15,8 @@ class User_ProdutoController extends Controller
      */
     public function index()
     {
-        $user = User::all();
-        
+        $produtos = Produto::all();
+        return view('site.produtos', compact('produtos'));
     }
 
     /**
@@ -48,7 +48,8 @@ class User_ProdutoController extends Controller
      */
     public function show($id)
     {
-        //
+        $produto = Produto::findOrFail($id);
+        return view('site.produto', compact('produto'));
     }
 
     /**

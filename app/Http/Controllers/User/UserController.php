@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -30,7 +31,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+    return view('site.cadastro'); // caminho para a view criada
     }
 
     /**
@@ -47,13 +48,13 @@ class UserController extends Controller
         //$contato->nome = $request->nome;
         $user->name = $request->nome;
         $user->email = $request->email;
-        $user->password = $request->senha;
+        $user->password = Hash::make($request->senha);
         $user->tel = $request->tel;
         $user->data_nasc = $request->birth;
 
         $user->save();
 
-        return view('user.user.index');
+        return view('site.index');
     }
 
     /**

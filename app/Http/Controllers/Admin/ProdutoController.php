@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +16,8 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        //
-        $produtos = Produto::all();
-        return view('admin.produto.index')->with('produtos',$produtos);
+        $produtos = Produto::with('categoria')->get(); // carrega produtos com suas categorias
+        return view('admin.produto.index')->with('produtos', $produtos);
     }
 
     /**
@@ -25,12 +25,13 @@ class ProdutoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-        $categorias = Categoria::all();
-        return view('admin.produto.create')->with('categorias', $categorias);
-    }
+public function create()
+{
+    $categorias = Categoria::all();
+    return view('admin.produto.create', compact('categorias'));
+}
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -39,31 +40,25 @@ class ProdutoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-        $produto = new Produto();
-        
-        $produto->nome = $request->nome;
-        $produto->id_categoria = $request->id_categoria;
-        $produto->preco = $request->preco;
-        $produto->desc = $request->desc;
-        // $produto->imagem = $request->imagem;
-        $produto->status = 1;
+{
+    $produto = new Produto;
+    $produto->nome = $request->nome;
+    $produto->id_categoria = $request->id_categoria;
+    $produto->preco = $request->preco;
+    $produto->desc = $request->desc;
+    $produto->status = $request->status;
 
-        // Verifica se uma imagem foi enviada
-    if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
-        $imagem = $request->file('imagem');
-        $nomeImagem = time() . '.' . $imagem->getClientOriginalExtension(); // Ex: 1623345543.jpg
-        $caminho = $imagem->storeAs('produtos', $nomeImagem, 'public'); // Salva em storage/app/public/produtos
-
-        $produto->imagem = $caminho; // Salva caminho no banco, ex: "produtos/1623345543.jpg"
-    }   
-
-        $produto->save();
-
-        return redirect()->route('admin.produto.index');
-
+    if ($request->hasFile('imagem')) {
+        $nomeImagem = time() . '.' . $request->imagem->extension();
+        $request->imagem->move(public_path('imagens/produtos'), $nomeImagem);
+        $produto->imagem = $nomeImagem;
     }
+
+    $produto->save();
+
+    return redirect()->route('admin.produto.index')->with('success', 'Produto cadastrado com sucesso!');
+}
+
 
     /**
      * Display the specified resource.
@@ -106,19 +101,13 @@ class ProdutoController extends Controller
         $produto->preco = $request->preco;
         $produto->desc = $request->desc;
     
-        // Se houver uma nova imagem
         if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
             $imagem = $request->file('imagem');
             $nomeImagem = time() . '.' . $imagem->getClientOriginalExtension();
-            $caminho = $imagem->storeAs('produtos', $nomeImagem, 'public');
-    
-            // Opcional: apagar imagem antiga se quiser
-            if ($produto->imagem && \Storage::disk('public')->exists($produto->imagem)) {
-                \Storage::disk('public')->delete($produto->imagem);
-            }
-    
-            $produto->imagem = $caminho;
+            $imagem->move(public_path('imagens/produtos'), $nomeImagem);
+            $produto->imagem = $nomeImagem;
         }
+        
     
         $produto->save();
     
@@ -132,8 +121,11 @@ class ProdutoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
+public function destroy($id)
+{
+    $produto = Produto::findOrFail($id);
+    $produto->delete();
+
+    return redirect()->route('admin.produto.index')->with('success', 'Produto excluído com sucesso!');
+}
 }
