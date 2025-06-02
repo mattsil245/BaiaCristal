@@ -39,7 +39,7 @@
         <div class="mb-3">
             <label for="imagem" class="form-label">Imagem Atual</label><br>
             @if ($produto->imagem)
-                <img src="{{ asset('storage/' . $produto->imagem) }}" alt="Imagem do produto" width="150" class="mb-2">
+            <img src="{{ asset('imagens/produtos/' . $produto->imagem) }}" alt="{{ $produto->nome }}" width="150" class="mb-2">
             @else
                 <p>Sem imagem.</p>
             @endif

@@ -71,61 +71,22 @@
 </style>
 
 <div class="container-produtos">
+    <h1 class="titulo">Produtos</h1>
 
-    <div class="titulo">
-        <h1>Lanches</h1>
-    </div>
     <div class="listasProdutos">
-        @for($i = 0; $i < 3; $i++)
-        <a href="produto" class="link-produto">
-            <div class="cardProdutos">
-                <div class="cardImagem">
-                    <img src="{{ asset('img/monstro.jpg') }}" alt="Descrição da imagem">
+        @foreach($produtos as $produto)
+            <a href="{{ url('produto/' . $produto->id) }}" class="link-produto">
+                <div class="cardProdutos">
+                    <div class="cardImagem">
+                        <img src="{{ asset('imagens/produtos/' . $produto->imagem) }}" alt="{{ $produto->nome }}">
+                    </div>
+                    <div class="nomeProduto">
+                        {{ strtoupper($produto->nome) }}
+                    </div>
                 </div>
-                <div class="nomeProduto">
-                    MONSTRUOSO X-TUDO
-                </div>
-            </div>
-        </a>
-        @endfor
+            </a>
+        @endforeach
     </div>
-
-    <div class="titulo">
-        <h1>Bebidas</h1>
-    </div>
-    <div class="listasProdutos">
-        @for($i = 0; $i < 3; $i++)
-        <a href="produto" class="link-produto">
-            <div class="cardProdutos">
-                <div class="cardImagem">
-                    <img src="{{ asset('img/monstro.jpg') }}" alt="Descrição da imagem">
-                </div>
-                <div class="nomeProduto">
-                    MONSTRUOSO X-TUDO
-                </div>
-            </div>
-        </a>
-        @endfor
-    </div>
-
-    <div class="titulo">
-        <h1>Acompanhamento</h1>
-    </div>
-    <div class="listasProdutos">
-        @for($i = 0; $i < 6; $i++)
-        <a href="produto" class="link-produto">
-            <div class="cardProdutos">
-                <div class="cardImagem">
-                    <img src="{{ asset('img/monstro.jpg') }}" alt="Descrição da imagem">
-                </div>
-                <div class="nomeProduto">
-                    MONSTRUOSO X-TUDO
-                </div>
-            </div>
-        </a>
-        @endfor
-    </div>
-
 </div>
 
 @endsection

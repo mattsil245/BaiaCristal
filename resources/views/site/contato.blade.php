@@ -62,7 +62,7 @@
     </style>
 <div class="container-fluid d-flex align-items-center justify-content-center">
 <div claass="container" style="width: 60%">
-<form action="/criar-contato" method="post">
+<form action="{{ route('contato.store') }}" method="post">
     @csrf
     
     <div class="mb-3">
@@ -85,6 +85,11 @@
         Enviar
     </div>
 </form>
+@if(session('success'))
+            <div class="alert alert-success mt-3">
+                {{ session('success') }}
+            </div>
+        @endif
 </div>
 </div>
 @endsection

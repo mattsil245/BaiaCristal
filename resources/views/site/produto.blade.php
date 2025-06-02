@@ -78,27 +78,29 @@
     </div>
 
     <div class="imgProduto">
-        <img src="{{ asset('img/monstro.jpg') }}" alt="Descrição da imagem">
+    <img src="{{ asset('imagens/produtos/' . $produto->imagem) }}" alt="{{ $produto->nome }}">
+</div>
+
+<div class="card-produto">
+    <div class="nomeProduto">
+        {{ strtoupper($produto->nome) }}
     </div>
 
-    <div class="card-produto">
-        <div class="nomeProduto">
-            MONSTRUOSO X-TUDO
+    <div class="alinha">
+        <div class="preco">
+            R$ {{ number_format($produto->preco, 2, ',', '.') }}
         </div>
+        <div class="favoritar">
+            <img src="{{ asset('img/favorito.png') }}" alt="Favoritar" width="24">
+        </div>
+    </div>
 
-        <div class="alinha">
-            <div class="preco">
-                R$ 16,00
-            </div>
-            <div class="favoritar">
-                <img src="{{ asset('img/favorito.png') }}" alt="Favoritar" width="24">
-            </div>
-        </div>
-
-        <div class="btnProduto">
-            Pedir
-        </div>
+    <div class="btnProduto">
+        Pedir
     </div>
 </div>
+
+</div>
+
 
 @endsection

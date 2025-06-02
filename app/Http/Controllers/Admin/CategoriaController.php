@@ -80,10 +80,23 @@ class CategoriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+public function update(Request $request, $id)
+{
+    // Validação simples (opcional)
+    $request->validate([
+        'categoria' => 'required|string|max:255'
+    ]);
+
+    // Busca a categoria pelo ID
+    $categoria = Categoria::findOrFail($id);
+
+    // Atualiza os dados
+    $categoria->categoria = $request->categoria;
+    $categoria->save();
+
+    // Redireciona com mensagem de sucesso
+    return redirect()->route('admin.categoria.index')->with('success', 'Categoria atualizada com sucesso!');
+}
 
     /**
      * Remove the specified resource from storage.

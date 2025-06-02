@@ -1,19 +1,20 @@
 @extends('layouts.adm')
 
-@section('title', 'Home - Adm')
+@section('title', 'Editar Categoria - Adm')
 
 @section('content')
-<h1>Contatos</h1>
+<h1>Editar Categoria</h1>
 
-<form action="{{ url('/admin/categoria/criar-categoria') }}" method="post">
+<form action="{{ route('admin.categoria.update', $categoria->id) }}" method="post">
     @csrf
+    @method('PUT') <!-- ou PATCH -->
     <div class="mb-3">
         <label for="categoria" class="form-label">Categoria</label>
-        <input type="text" class="form-control" name="categoria" id="categoria" value="{{$categoria->categoria}}">
+        <input type="text" class="form-control" name="categoria" id="categoria" value="{{ old('categoria', $categoria->categoria) }}">
     </div>
 
     <div>
-        <button type="submit" class="btn btn-primary">ENVIAR</button>
+        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
     </div>
 </form>
 @endsection

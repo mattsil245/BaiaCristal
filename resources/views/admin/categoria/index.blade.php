@@ -5,6 +5,18 @@
 @section('content')
 
 <div class="container mt-5">
+{{-- ALERTAS DE SUCESSO OU ERRO --}}
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
     <div class="col fs-3 fw-semibold">
             Lista de Categorias          
         </div>
@@ -15,7 +27,7 @@
         </div>
 
         <table class="table table-bordered table-striped">
-            <thead class="thead-dark">
+            <thead class="table-dark">
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Nome</th>
@@ -34,9 +46,14 @@
 
                       </td>
                       <td class="text-center ">
-                        <a class="dropdown-item" >
-                          <i class="fas fa-trash-alt fa-lg text-danger"></i>
-                        </a>
+                      <form action="{{ route('admin.categoria.destroy', $c->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir esta categoria?');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-link p-0 m-0" style="border: none; background: none;">
+                            <i class="fas fa-trash-alt fa-lg text-danger"></i>
+                        </button>
+                    </form>
+
                       </td>
                     </tr>
                     @endforeach
