@@ -121,7 +121,36 @@
             </div>
         </div>
 
-        <div class="btnProduto">Pedir</div>
+        <div class="btnProduto" onclick="adicionarAoCarrinho({{ $produto->id }})">
+            Pedir
+        </div>  
+
     </div>
 </div>
+<script>
+    function adicionarAoCarrinho(produtoId) {
+        fetch('/carrinho/adicionar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({ produto_id: produtoId })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                alert('Produto adicionado ao carrinho!');
+                // opcional: atualizar ícone/contador do carrinho
+            } else {
+                alert('Erro ao adicionar ao carrinho.');
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            alert('Erro ao adicionar ao carrinho.');
+        });
+    }
+</script>
+
 @endsection

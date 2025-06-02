@@ -23,10 +23,11 @@ class UsuarioAuthController extends Controller
         return back()->with('error', 'E-mail ou senha inválidos');
     }
 
-    public function logout()
-    {
-        session()->forget(['usuario_logado', 'usuario_nome']);
-        return redirect('/')->with('success', 'Logout realizado');
-    }
+public function logout()
+{
+    session()->flush(); // Remove tudo da sessão
+    return redirect('/')->with('success', 'Logout realizado com sucesso!');
+}
+
 }
 

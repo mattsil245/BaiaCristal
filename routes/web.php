@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\User\UsuarioPerfilController;
+use App\Http\Controllers\CarrinhoController;
 
 use App\Http\Controllers\Admin\Admin_User_Controller;
 use App\Http\Controllers\Admin\AdminController;
@@ -79,5 +80,13 @@ Route::prefix('')->group(function () {
     Route::post('/login', [UsuarioAuthController::class, 'login'])->name('usuario.login');
     Route::get('/logout', [UsuarioAuthController::class, 'logout'])->name('usuario.logout');
     Route::get('/perfil', [UsuarioPerfilController::class, 'index'])->name('usuario.perfil');
+    Route::post('/carrinho/adicionar', [CarrinhoController::class, 'adicionar']);
+    Route::get('/carrinho', [CarrinhoController::class, 'verCarrinho']);
+    Route::post('/carrinho/remover/{id}', [CarrinhoController::class, 'remover'])->name('carrinho.remover');
+    Route::post('/carrinho/atualizar/{id}', [CarrinhoController::class, 'atualizarQuantidade'])->name('carrinho.atualizar');
+
+
 });
+
+
 
