@@ -67,23 +67,24 @@
     
     <div class="mb-3">
         <label for="nome" class="form-label">Nome:</label>
-        <input type="text" class="form-control" name="nome" placeholder="Seu Nome">
+        <input type="text" class="form-control" name="nome" placeholder="Seu Nome" required>
     </div>
     <div class="mb-3">
         <label for="email" class="form-label">Email:</label>
-        <input type="email" class="form-control" placeholder="name@example.com" name="email">
+        <input type="email" class="form-control" placeholder="name@example.com" name="email" required>
     </div>
     <div class="mb-3">
         <label for="assunto" class="form-label">Asssunto:</label>
-        <input type="text" class="form-control" name="assunto" placeholder="Titulo da mensagem">
+        <input type="text" class="form-control" name="assunto" placeholder="Titulo da mensagem" required>
     </div>
     <div class="mb-3">
         <label for="msg" class="form-label">Mensagem</label>
-        <textarea class="form-control" rows="5" name="msg" placeholder="Escreva aqui sua mensagem"></textarea>
+        <textarea class="form-control" rows="5" name="msg" placeholder="Escreva aqui sua mensagem" required></textarea>
     </div>
-    <div class="btnEnviar">
-        Enviar
-    </div>
+<button type="submit" class="btnEnviar">
+    Enviar
+</button>
+
 </form>
 @if(session('success'))
             <div class="alert alert-success mt-3">
